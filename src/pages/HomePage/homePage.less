@@ -1,0 +1,62 @@
+/* 头部 */
+.header{
+  width: 100%;
+  background: #f5f5f5;
+  .header-container:after{
+    content:'';
+  }
+  .header-container{
+    width: 1190px;
+    height: 35px;
+    line-height:35px;
+    margin: 0 auto;
+    ul{
+      margin:0;
+      padding:0;
+      list-style:none;
+      li{
+        position: relative;
+        font-size:12px;
+        color:#6C6C6C;
+        padding:0 10px;
+        .icon{
+          margin-left:10px;
+        }
+        .slecttion{
+          position: absolute;
+          top: 35px;
+          left: 0;
+          z-index: 1;
+          width: 100px;
+          padding:10px;
+          background: #fff;
+          border:1px solid #E0E0E0;
+        }
+      }
+    }
+    ul:first-child{
+        float:left;
+        li{
+          float:left;
+        }
+        li:not(:first-child):hover{
+          cursor:pointer;
+          color:#fc5400;
+        }
+        li:first-child:hover{
+          background: #fff;
+        }
+    }
+    ul:last-child{
+      float:right;
+      li{
+        float:left;
+      }
+      li:hover{
+        color:#fc5400;
+        cursor:pointer;
+        background: #fff;
+      }
+  }
+  }
+}
