@@ -17,11 +17,17 @@
   padding: 0;
   list-style: none;
 }
-.header .header-container ul li {
+.header .header-container ul .position-li {
   position: relative;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+.header .header-container ul li {
   font-size: 12px;
   color: #6C6C6C;
   padding: 0 10px;
+  border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #f5f5f5;
 }
 .header .header-container ul li .icon {
   margin-left: 10px;
@@ -29,11 +35,12 @@
 .header .header-container ul li .slecttion {
   position: absolute;
   top: 35px;
-  left: 0;
+  left: -1px;
   z-index: 1;
   width: 100px;
   padding: 10px;
   background: #fff;
+  color: #6C6C6C;
   border: 1px solid #E0E0E0;
 }
 .header .header-container ul:first-child {
@@ -59,4 +66,13 @@
   color: #fc5400;
   cursor: pointer;
   background: #fff;
+}
+.advertisement-container {
+  background: #f40d4d;
+  font-size: 0;
+  text-align: center;
+}
+.advertisement-container img {
+  width: 1190px;
+  height: 70px;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
+import Advertisement from '../../components/Advertisement';
 
 class HomePage extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class HomePage extends Component {
       <React.Fragment>
        <div className="homePage-container">
        <Header></Header>
+       {/* 广告位置 */}
+       <Advertisement></Advertisement>
        </div>
       </React.Fragment>
       );

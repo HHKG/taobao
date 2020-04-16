@@ -4,24 +4,28 @@ import '../pages/HomePage/homePage.less';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentId:''
+    };
   }
 
-  mouseEnter = () => {
-    // let currentId=this.address.id;
-    // let currentObj=document.getElementById(currentId);
-    // let parentDoc=document.createElement('div');
-    // let txtNode=document.createTextNode('出来了');
-    // parentDoc.setAttribute('className','slecttion');
-    // parentDoc.appendChild(txtNode)
-    // currentObj.appendChild(parentDoc);
+  mouseEnter = (e) => {
+    e.persist();
     
-    // obj.append(selection)
+    if (e.target.className === '') {
+      e.target.className = 'position-li';
+    }
+    
+    this.setState({
+      currentId: e.target.id
+    },()=>{
+      console.log(e,this.popViewTag)
+    })
   }
   // 弹窗
-  popView=()=>{
-    return(
-      <div className="slecttion">
+  popView = () => {
+    return (
+      <div id="pop" style={{width:'100px'}} ref={(ref)=>this.popViewTag=ref} className="slecttion">
         <p>中国大陆</p>
         <p>香港</p>
         <p>美国</p>
@@ -32,43 +36,53 @@ class Header extends Component {
   }
 
 
-  mouseOut=()=>{
-    let currentId=this.address.id;
-    let currentObj=document.getElementById(currentId);
+  mouseOut = (e) => {
+    e.target.className = "";
+    let currentItem=document.getElementById(e.target.id);
+    currentItem.style.borderBottom='';
+    this.setState({
+      currentId: ''
+    })
   }
 
   render() {
+    let { currentId } = this.state;
     return (
       <React.Fragment>
         <div className="header">
           <div className="header-container">
             <ul>
-              <li onMouseEnter={this.mouseEnter} onMouseOut={this.mouseOut} id="address" ref={(ref) => this.address = ref}>中国大陆
-                {this.popView()}
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut} id="address">中国大陆
+              {currentId==='address' ? this.popView() : null}
               </li>
-              <li>请登录</li>
-              <li>手机逛淘宝</li>
+              <li className="" id="login">请登录
+              {currentId==='login' ? this.popView() : null}
+              </li>
+              <li className="" id="mobileTaobao">手机逛淘宝
+              {currentId==='mobileTaobao' ? this.popView() : null}
+              </li>
             </ul>
             <ul>
-              <li>我的淘宝
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="myTaobao" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>我的淘宝
+              {currentId==='myTaobao' ? this.popView() : null}
               </li>
-              <li>购物车
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="shopCar" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>购物车
+              {currentId==='shopCar' ? this.popView() : null}
               </li>
-              <li>收藏夹
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="bookMark" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>收藏夹
+              {currentId==='bookMark' ? this.popView() : null}
               </li>
-              <li>商品分类</li>
-              <li>千牛卖家中心
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="goodsCategory" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>商品分类
+              {currentId==='goodsCategory' ? this.popView() : null}
               </li>
-              <li>联系客服
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="qianNiu" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>千牛卖家中心
+              {currentId==='qianNiu' ? this.popView() : null}
               </li>
-              <li>网站导航
-                <svg t="1586938604031" className="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2484" width="12" height="12"><path d="M508.025406 655.446718c-14.45307 0-28.183486-5.781228-39.023289-15.898376l-231.249118-231.249118c-10.117149-10.117149-10.117149-26.015526 0-36.132675s26.015526-10.117149 36.132675 0l231.249118 231.249118c2.16796 2.16796 4.335921 2.16796 5.781228 0l231.971771-231.971771c10.117149-10.117149 26.015526-10.117149 35.410021 0 10.117149 10.117149 10.117149 26.015526 0 36.132674l-231.971771 231.971772c-9.394495 10.117149-23.124912 15.898377-38.300635 15.898376z" p-id="2485" fill="#6C6C6C"></path></svg>
+              <li className="" id="cantactServer" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>联系客服
+              {currentId==='cantactServer' ? this.popView() : null}
+              </li>
+              <li className="" id="navigation" onMouseOver={this.mouseEnter} onMouseOut={this.mouseOut}>网站导航
+              {currentId==='navigation' ? this.popView() : null}
               </li>
             </ul>
           </div>

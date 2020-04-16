@@ -2,9 +2,6 @@
 .header{
   width: 100%;
   background: #f5f5f5;
-  .header-container:after{
-    content:'';
-  }
   .header-container{
     width: 1190px;
     height: 35px;
@@ -14,23 +11,32 @@
       margin:0;
       padding:0;
       list-style:none;
-      li{
+      .position-li{
         position: relative;
+        border-left:1px solid #e0e0e0;
+        border-right:1px solid #e0e0e0;
+      }
+      li{
         font-size:12px;
         color:#6C6C6C;
         padding:0 10px;
+        border-left:1px solid #f5f5f5;
+        border-right:1px solid #f5f5f5;
         .icon{
           margin-left:10px;
         }
         .slecttion{
           position: absolute;
           top: 35px;
-          left: 0;
+          left: -1px;
           z-index: 1;
           width: 100px;
           padding:10px;
           background: #fff;
-          border:1px solid #E0E0E0;
+          color: #6C6C6C;
+          border-left:1px solid #E0E0E0;
+          border-right:1px solid #E0E0E0;
+          border-bottom:1px solid #E0E0E0;
         }
       }
     }
@@ -59,4 +65,14 @@
       }
   }
   }
+}
+// 广告
+.advertisement-container{
+  background: #f40d4d;
+  font-size: 0;
+  text-align: center;
+   img{
+    width: 1190px;
+    height: 70px;
+   }
 }
