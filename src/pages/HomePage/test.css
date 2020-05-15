@@ -1,0 +1,19 @@
+.test{
+  background-color: red;
+
+}
+.normal {
+  composes:importCss from './otherTest.css';
+  composes:test;
+  color: green;
+}
+
+/* 以上与下面等价*/
+:local(.normal) {
+   color: green;
+}
+
+/* 定义全局样式*/
+:global(.btn) {
+   color: red;
+}

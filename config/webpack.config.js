@@ -24,6 +24,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const values = require('postcss-modules-values');
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -361,6 +362,16 @@ module.exports = function(webpackEnv) {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
               },
+            },
+            // 自主添加
+            {
+              test: /\.css$/,
+              loader: "style-loader!css-loader?modules"
+            },
+            // 定制哈希类名
+            {
+              test: /\.css$/,
+              loader: "style-loader!css-loader?modules&localIdentName=[path][name]-[local]-[hash:base64:5]"
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
